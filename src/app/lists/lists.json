@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "name": "liste 1", 
+        "tasks": [ 
+            {
+                "id": 0, 
+                "task": "water the plants", 
+                "rank": 0, 
+                "status": "toDo"
+            },
+            {
+                "id": 1, 
+                "task": "Clean room", 
+                "rank": 1, 
+                "status": "toDo"
+            }
+        ]
+    }, 
+    {
+        "id": 1,
+        "name": "liste 2", 
+        "tasks": [ 
+            {
+                "id": 0, 
+                "task": "Feed the cat", 
+                "rank": 0, 
+                "status": "toDo"
+            }
+        ]
+    }
+]
