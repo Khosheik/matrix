@@ -7,11 +7,11 @@ import type { List } from './list/list.component'
   selector: 'app-lists',
   standalone: true,
   imports: [ListComponent],
-  template: `
-  @for (list of lists; track list.id){
-    <app-list [list]="list" />
-  }
-
+  template: `<div class="lists">
+    @for (list of lists; track list.id){
+      <app-list [list]="list" />
+    }
+  </div>
   `,
   styleUrl: './lists.component.scss'
 })

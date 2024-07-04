@@ -1,7 +1,7 @@
 [
     {
         "id": 0,
-        "name": "liste 1", 
+        "name": "To-Do list", 
         "tasks": [ 
             {
                 "id": 0, 
@@ -19,7 +19,7 @@
     }, 
     {
         "id": 1,
-        "name": "liste 2", 
+        "name": "List 2", 
         "tasks": [ 
             {
                 "id": 0, 

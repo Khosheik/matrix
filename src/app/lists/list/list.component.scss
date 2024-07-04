@@ -1,0 +1,40 @@
+.list {
+    background-color: #D5CCFF;
+    border-radius: 15px;
+    margin: 1em; 
+    display: flex;
+    flex-direction: column;
+    min-width: 15em;
+    
+
+    h2 {
+        color: #402E96;
+        text-align: left;
+        margin: 1em 1em 0 1em;
+        display: flex;
+        align-items: center;
+
+        .mat-icon {
+            margin-right: 0.5em;
+        }
+    }
+
+    ol {
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+
+        li { 
+            list-style-type: none;
+            padding: 1em;
+            margin: 0.5em;
+            background-color: #F5F2FF;
+            border-radius: 15px;
+
+            span {
+                margin-left: 0.5em;
+            }
+        }
+    }
+}
+

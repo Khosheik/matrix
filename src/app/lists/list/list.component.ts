@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {MatIconModule} from '@angular/material/icon';
 
 type Task = {
   id: number, 
@@ -16,14 +17,20 @@ export type List = {
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [],
+  imports: [MatIconModule],
   template: `
-    {{list.name}}
+  <div class="list">
+    <h2>
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="task_alt"></mat-icon>
+      <span>{{list.name}}</span>
+    </h2>
     <ol>
       @for (task of list.tasks; track task.id) {
-        <li><input type="checkbox"><span>{{task.task}}</span></li>
+        <li><input class="checkboxList" type="checkbox"><span>{{task.task}}</span></li>
       }
     </ol>
+    
+    </div> 
   `,
   styleUrl: './list.component.scss'
 })
@@ -40,4 +47,5 @@ export class ListComponent {
         }
     ]
   };
+  
 }
