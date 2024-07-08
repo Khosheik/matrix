@@ -32,6 +32,10 @@
             background-color: #F5F2FF;
             border-radius: 15px;
 
+            input[type=checkbox]:checked + span {
+                text-decoration: line-through;
+            }
+
             span {
                 margin-left: 0.5em;
             }
