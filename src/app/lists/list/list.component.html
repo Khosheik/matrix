@@ -9,7 +9,6 @@
         @if(addingTask === true){
             <li>
                 <input type="text" #task class="checkboxList" placeholder="Enter your task" (keyup.enter)="addTask(task.value)">
-                <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete a task" fontIcon="delete"></mat-icon>
             </li>
         }
         @for (task of list.tasks; track task.id) {
@@ -19,7 +18,7 @@
                     <input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)" checked>
                     <span>{{task.task}}</span>
                 </div>
-                <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete a task" fontIcon="delete"></mat-icon>
+                <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete a task" fontIcon="delete" (click)="deleteTask(task.id)"></mat-icon>
             </li>
             } 
             @else {
@@ -28,7 +27,7 @@
                     <input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)">
                     <span>{{task.task}}</span>
                 </div>
-                <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete a task" fontIcon="delete"></mat-icon>
+                <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete a task" fontIcon="delete" (click)="deleteTask(task.id)"></mat-icon>
             </li>
             }     
         }

@@ -61,6 +61,10 @@ export class ListComponent implements OnInit {
     console.log(this.list.tasks)
   }
 
+  deleteTask(deletedTaskId: number) {
+    this.list.tasks = this.list.tasks.filter((task) => task.id !== deletedTaskId)
+  }
+
   changeStatus(status: TASKSTATUS) {
     status === 0 ? status = TASKSTATUS.DONE : status = TASKSTATUS.TODO;
   }
