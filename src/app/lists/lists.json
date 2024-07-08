@@ -5,15 +5,15 @@
         "tasks": [ 
             {
                 "id": 0, 
-                "task": "water the plants", 
+                "task": "Water the plants", 
                 "rank": 0, 
-                "status": "toDo"
+                "status": 0
             },
             {
                 "id": 1, 
                 "task": "Clean room", 
                 "rank": 1, 
-                "status": "toDo"
+                "status": 1
             }
         ]
     }, 
@@ -25,7 +25,7 @@
                 "id": 0, 
                 "task": "Feed the cat", 
                 "rank": 0, 
-                "status": "toDo"
+                "status": 0
             }
         ]
     }

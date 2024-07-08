@@ -5,7 +5,7 @@ type Task = {
   id: number, 
   task: string, 
   rank: number, 
-  status: string,
+  status: TASKSTATUS,
 }
 
 export type List = {
@@ -14,25 +14,16 @@ export type List = {
   tasks: Task[],
 }
 
+export enum TASKSTATUS {
+  DONE = 1, 
+  TODO = 0, 
+}
+
 @Component({
   selector: 'app-list',
   standalone: true,
   imports: [MatIconModule],
-  template: `
-  <div class="list">
-    <div class="list-header">
-      <h2>
-        <span>{{list.name}}</span>
-      </h2>
-      <mat-icon aria-hidden="false" aria-label="Add" fontIcon="add_circle" (click)="addTask()"></mat-icon>
-    </div>
-    <ol>
-      @for (task of list.tasks; track task.id) {
-        <li><input class="checkboxList" type="checkbox" (click)="changeStatus(task.id, task.status)"><span>{{task.task}}</span></li>
-      }
-    </ol>
-    </div> 
-  `,
+  templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
 export class ListComponent {
@@ -44,19 +35,17 @@ export class ListComponent {
             "id": 0, 
             "task": "No tasks yet", 
             "rank": 0, 
-            "status": "toDo"
+            "status": TASKSTATUS.TODO
         }
     ]
   };
 
   addTask () {
-    console.log(this.list)
-
-    this.list.tasks = [...this.list.tasks, {id: 2, task: 'read', rank: 2, status: 'todo'}]
+    this.list.tasks = [...this.list.tasks, {id: 2, task: 'read', rank: 2, status: TASKSTATUS.TODO}];
   }
 
-  changeStatus(id: number, status: string) {
-    console.log(`works: ${id} ${status}`)
+  changeStatus(status: TASKSTATUS) {
+    status === 0 ? status = TASKSTATUS.DONE : status = TASKSTATUS.TODO;
   }
 
   
