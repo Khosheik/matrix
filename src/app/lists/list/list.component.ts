@@ -40,8 +40,16 @@ export class ListComponent {
     ]
   };
 
-  addTask () {
-    this.list.tasks = [...this.list.tasks, {id: 2, task: 'read', rank: 2, status: TASKSTATUS.TODO}];
+  addingTask = false; 
+
+  openAddTask () {
+    this.addingTask = true; 
+  }
+
+  addTask (addedTask: string) {
+    console.log(addedTask);
+    this.list.tasks = [...this.list.tasks, {id: 2, task: addedTask, rank: 2, status: TASKSTATUS.TODO}];
+    this.addingTask = false;
   }
 
   changeStatus(status: TASKSTATUS) {

@@ -1,19 +1,21 @@
-<div class="list">
+  <div class="list">
     <div class="list-header">
       <h2>
         <span>{{list.name}}</span>
       </h2>
-      <mat-icon aria-hidden="false" aria-label="Add" fontIcon="add_circle" (click)="addTask()"></mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Add" fontIcon="add_circle" (click)="openAddTask()"></mat-icon>
     </div>
     <ol>
-      @for (task of list.tasks; track task.id) {
-        @if(task.status === 1) {
-          <li><input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)" checked><span>{{task.task}}</span></li>
-        } 
-        @else {
-          <li><input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)"><span>{{task.task}}</span></li>
+        @if(addingTask === true){
+            <li><input type="text" #task class="checkboxList" placeholder="Enter your task" (keyup.enter)="addTask(task.value)"></li>
         }
-        
-      }
+        @for (task of list.tasks; track task.id) {
+            @if(task.status === 1) {
+            <li><input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)" checked><span>{{task.task}}</span></li>
+            } 
+            @else {
+            <li><input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)"><span>{{task.task}}</span></li>
+            }     
+        }
     </ol>
     </div> 
