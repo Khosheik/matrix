@@ -47,14 +47,41 @@ export class ListComponent {
   }
 
   addTask (addedTask: string) {
-    console.log(addedTask);
-    this.list.tasks = [...this.list.tasks, {id: 2, task: addedTask, rank: 2, status: TASKSTATUS.TODO}];
+    const highestId = this.getHighestId();
+    const highestRank = this.getHighestRank();
+
+    this.list.tasks = [...this.list.tasks, {id: highestId + 1, task: addedTask, rank: highestRank + 1, status: TASKSTATUS.TODO}];
     this.addingTask = false;
+
+    console.log(this.list.tasks)
   }
 
   changeStatus(status: TASKSTATUS) {
     status === 0 ? status = TASKSTATUS.DONE : status = TASKSTATUS.TODO;
   }
 
+  getHighestId () {
+    let highestId = 0;
+
+    for (let task of this.list.tasks) {
+      if (task.id > highestId) {
+        highestId = task.id;
+      }
+    };
+
+    return highestId;
+  }
+
+  getHighestRank () {
+    let highestRank = 0;
+
+    for (let task of this.list.tasks) {
+      if (task.rank > highestRank) {
+        highestRank = task.rank;
+      }
+    };
+
+    return highestRank;
+  }
   
 }
