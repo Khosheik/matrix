@@ -20,16 +20,17 @@ export type List = {
   imports: [MatIconModule],
   template: `
   <div class="list">
-    <h2>
-      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="task_alt"></mat-icon>
-      <span>{{list.name}}</span>
-    </h2>
+    <div class="list-header">
+      <h2>
+        <span>{{list.name}}</span>
+      </h2>
+      <mat-icon aria-hidden="false" aria-label="Add" fontIcon="add_circle" (click)="addTask()"></mat-icon>
+    </div>
     <ol>
       @for (task of list.tasks; track task.id) {
-        <li><input class="checkboxList" type="checkbox"><span>{{task.task}}</span></li>
+        <li><input class="checkboxList" type="checkbox" (click)="changeStatus(task.id, task.status)"><span>{{task.task}}</span></li>
       }
     </ol>
-    
     </div> 
   `,
   styleUrl: './list.component.scss'
@@ -47,5 +48,16 @@ export class ListComponent {
         }
     ]
   };
+
+  addTask () {
+    console.log(this.list)
+
+    this.list.tasks = [...this.list.tasks, {id: 2, task: 'read', rank: 2, status: 'todo'}]
+  }
+
+  changeStatus(id: number, status: string) {
+    console.log(`works: ${id} ${status}`)
+  }
+
   
 }
