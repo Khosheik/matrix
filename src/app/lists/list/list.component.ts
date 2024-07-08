@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 
 type Task = {
@@ -26,7 +26,7 @@ export enum TASKSTATUS {
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
   @Input() list: List = {
     "id": 0,
     "name": "Unamed list", 
@@ -42,6 +42,10 @@ export class ListComponent {
 
   addingTask = false; 
 
+  ngOnInit(): void {
+    this.reorderTaskByRank();
+  }
+  
   openAddTask () {
     this.addingTask = true; 
   }
@@ -52,6 +56,7 @@ export class ListComponent {
 
     this.list.tasks = [...this.list.tasks, {id: highestId + 1, task: addedTask, rank: highestRank + 1, status: TASKSTATUS.TODO}];
     this.addingTask = false;
+    this.reorderTaskByRank();
 
     console.log(this.list.tasks)
   }
@@ -82,6 +87,10 @@ export class ListComponent {
     };
 
     return highestRank;
+  }
+
+  reorderTaskByRank () {
+    this.list.tasks.sort((a,b)=> b.rank-a.rank);
   }
   
 }
