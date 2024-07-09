@@ -1,9 +1,17 @@
   @if(list.displayed === 1) {
     <div class="list">
     <div class="list-header">
-      <h2>
-        <span>{{list.name}}</span>
-      </h2>
+      <div class="list-header-title" (click)="openListTitleEdition()">
+        @if (editingListTitle === true) {
+          <input #editTitle type="text" (keyup.enter)="updateListTitle(editTitle.value)" autofocus />
+        }
+        @else {
+          <h2>
+            <span >{{list.name}}</span>
+          </h2>
+        }
+
+      </div>
       <div class="list-header-actions">
         <app-delete-list [list]="list" [lists]="lists" />
         <mat-icon aria-hidden="false" aria-label="Add a task" fontIcon="add_circle" (click)="openAddTask()"></mat-icon>

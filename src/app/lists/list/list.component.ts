@@ -1,6 +1,7 @@
 import { Component, input, Input, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { DeleteListComponent } from '../delete-list/delete-list.component';
+import { log } from 'console';
 
 type Task = {
   id: number, 
@@ -50,17 +51,23 @@ export const defaultList = {
 })
 export class ListComponent implements OnInit {
   addingTask = false;
+  editingListTitle = false; 
 
   @Input() lists: List[] = [defaultList];
   @Input() list: List = defaultList;
   
   ngOnInit(): void {
     this.reorderTaskByRank();
-  }
+  };
   
   openAddTask () {
     this.addingTask = true; 
-  }
+  };
+
+  openListTitleEdition () {
+    this.editingListTitle = true; 
+  };
+
 
   addTask (addedTask: string) {
     const highestId = this.getHighestId();
@@ -69,19 +76,20 @@ export class ListComponent implements OnInit {
     this.list.tasks = [...this.list.tasks, {id: highestId + 1, task: addedTask, rank: highestRank + 1, status: TASKSTATUS.TODO}];
     this.addingTask = false;
     this.reorderTaskByRank();
-  }
+  };
 
   deleteTask(deletedTaskId: number) {
     this.list.tasks = this.list.tasks.filter((task) => task.id !== deletedTaskId)
-  }
+  };
 
   changeStatus(status: TASKSTATUS) {
     status === 0 ? status = TASKSTATUS.DONE : status = TASKSTATUS.TODO;
-  }
+  };
 
-  updatedList(event: any) {
-    this.lists.push(event);
-  }
+  updateListTitle(newTitle: string) {
+    this.list.name = newTitle;
+    this.editingListTitle = false;
+  };
 
   getHighestId () {
     let highestId = 0;
@@ -93,7 +101,7 @@ export class ListComponent implements OnInit {
     };
 
     return highestId;
-  }
+  };
 
   getHighestRank () {
     let highestRank = 0;
@@ -105,11 +113,11 @@ export class ListComponent implements OnInit {
     };
 
     return highestRank;
-  }
+  };
 
   reorderTaskByRank () {
     this.list.tasks.sort((a,b)=> b.rank-a.rank);
-  }
+  };
   
   
 }
