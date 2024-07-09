@@ -39,7 +39,7 @@ export class ListComponent implements OnInit {
         }
     ]
   };
-
+  
   addingTask = false; 
 
   ngOnInit(): void {
@@ -57,8 +57,6 @@ export class ListComponent implements OnInit {
     this.list.tasks = [...this.list.tasks, {id: highestId + 1, task: addedTask, rank: highestRank + 1, status: TASKSTATUS.TODO}];
     this.addingTask = false;
     this.reorderTaskByRank();
-
-    console.log(this.list.tasks)
   }
 
   deleteTask(deletedTaskId: number) {
@@ -96,5 +94,6 @@ export class ListComponent implements OnInit {
   reorderTaskByRank () {
     this.list.tasks.sort((a,b)=> b.rank-a.rank);
   }
+  
   
 }

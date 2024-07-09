@@ -2,7 +2,7 @@
     background-color: #D5CCFF;
     border-radius: 15px;
     margin: 1em; 
-    min-width: 15em;
+    min-width: 20em;
     
    &-header {
         display: flex;
@@ -17,6 +17,7 @@
 
         h2 {
             font-size: 2em;
+            font-weight: 600;
         }
 
     }
@@ -47,6 +48,11 @@
             input[type=text] {
                 border: none;
                 background-color: #F5F2FF;
+                padding: 0.5em;
+                outline: none;
+                font-size: 1em;
+                margin: 0;
+                border: #402E96 1px solid;
             }
 
             .delete-icon {

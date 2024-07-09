@@ -2,15 +2,17 @@ import { Component, input } from '@angular/core';
 import { ListComponent } from './list/list.component';
 import data from './lists.json'
 import type { List } from './list/list.component' 
+import { AddListComponent } from './add-list/add-list.component';
 
 @Component({
   selector: 'app-lists',
   standalone: true,
-  imports: [ListComponent],
+  imports: [ListComponent, AddListComponent],
   template: `<div class="lists">
     @for (list of lists; track list.id){
       <app-list [list]="list" />
     }
+    <app-add-list [lists]=lists />
   </div>
   `,
   styleUrl: './lists.component.scss'

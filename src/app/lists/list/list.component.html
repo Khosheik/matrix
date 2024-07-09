@@ -8,7 +8,7 @@
     <ol>
         @if(addingTask === true){
             <li>
-                <input type="text" #task class="checkboxList" placeholder="Enter your task" (keyup.enter)="addTask(task.value)">
+                <input type="text" #task class="checkboxList" placeholder="Enter your task" (keyup.enter)="addTask(task.value)" autofocus>
             </li>
         }
         @for (task of list.tasks; track task.id) {

@@ -1,0 +1,24 @@
+.add-list {
+
+
+    button {
+        border: none;
+        border-radius: 2em;
+        padding: 1em;
+        color: #402E96;
+        background-color: #D5CCFF;
+        text-transform: uppercase;
+        font-weight: 700;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            margin: 0 0.5em;
+        }
+
+
+    }
+}
