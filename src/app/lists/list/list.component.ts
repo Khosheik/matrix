@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input, Input, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
+import { DeleteListComponent } from '../delete-list/delete-list.component';
 
 type Task = {
   id: number, 
@@ -12,6 +13,8 @@ export type List = {
   id: number, 
   name: string, 
   tasks: Task[],
+  //useful only because we don't have a DB
+  displayed: DISPLAYEDLIST,
 }
 
 export enum TASKSTATUS {
@@ -19,29 +22,38 @@ export enum TASKSTATUS {
   TODO = 0, 
 }
 
+enum DISPLAYEDLIST {
+  YES = 1, 
+  NO = 0,
+}
+
+export const defaultList = {
+  "id": 3,
+  "name": "New list", 
+  "tasks": [ 
+      {
+          "id": 0, 
+          "task": 'Add a task', 
+          "rank": 0, 
+          "status": 0
+      }
+    ], 
+    "displayed": 1,
+  };
+
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, DeleteListComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit {
-  @Input() list: List = {
-    "id": 0,
-    "name": "Unamed list", 
-    "tasks": [ 
-        {
-            "id": 0, 
-            "task": "No tasks yet", 
-            "rank": 0, 
-            "status": TASKSTATUS.TODO
-        }
-    ]
-  };
-  
-  addingTask = false; 
+  addingTask = false;
 
+  @Input() lists: List[] = [defaultList];
+  @Input() list: List = defaultList;
+  
   ngOnInit(): void {
     this.reorderTaskByRank();
   }
@@ -65,6 +77,10 @@ export class ListComponent implements OnInit {
 
   changeStatus(status: TASKSTATUS) {
     status === 0 ? status = TASKSTATUS.DONE : status = TASKSTATUS.TODO;
+  }
+
+  updatedList(event: any) {
+    this.lists.push(event);
   }
 
   getHighestId () {

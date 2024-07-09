@@ -10,7 +10,7 @@ import { AddListComponent } from './add-list/add-list.component';
   imports: [ListComponent, AddListComponent],
   template: `<div class="lists">
     @for (list of lists; track list.id){
-      <app-list [list]="list" />
+      <app-list [list]="list" [lists]="lists"/>
     }
     <app-add-list [lists]=lists />
   </div>

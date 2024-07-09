@@ -14,8 +14,9 @@
                 "task": "Clean room", 
                 "rank": 40, 
                 "status": 1
-            }
-        ]
+            } 
+        ], 
+        "displayed": 1
     }, 
     {
         "id": 1,
@@ -26,7 +27,8 @@
                 "task": "Feed the cat", 
                 "rank": 0, 
                 "status": 0
-            }
-        ]
+            } 
+        ], 
+        "displayed": 1
     }
 ]

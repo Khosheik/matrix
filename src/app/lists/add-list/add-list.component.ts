@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import type { List } from '../list/list.component';
 
@@ -16,35 +16,40 @@ import type { List } from '../list/list.component';
   styleUrl: './add-list.component.scss'
 })
 export class AddListComponent {
-  @Input() lists: List[] = [
-      {
-      "id": 0,
-      "name": "Unamed list", 
-      "tasks": [ 
-          {
-              "id": 0, 
-              "task": "No tasks yet", 
-              "rank": 0, 
-              "status": 1
-          }
-        ]
-      }
-    ]; 
+  defaultList = {
+    "id": 3,
+    "name": "New list", 
+    "tasks": [ 
+        {
+            "id": 0, 
+            "task": 'Add a task', 
+            "rank": 0, 
+            "status": 0
+        }
+      ], 
+    "displayed": 1,
+    }; 
+
+  @Input() lists: List[] = [this.defaultList]; 
   
   addList() {
-    this.lists.push(
-      {
-        "id": 0,
-        "name": "New list", 
-        "tasks": [ 
-            {
-                "id": 0, 
-                "task": "No tasks yet", 
-                "rank": 0, 
-                "status": 1
-            }
-          ]
-        }
-    )
+    let highestListId = this.getHighestListId() 
+    let newList = {
+      ...this.defaultList, 
+      "id": highestListId + 1,
+    }
+    this.lists.push(newList);
+  }
+
+  getHighestListId() {
+    let highestListId = 0;
+
+    for (let list of this.lists) {
+      if (list.id > highestListId) {
+        highestListId = list.id;
+      }
+    };
+
+    return highestListId;
   }
 }

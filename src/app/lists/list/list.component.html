@@ -1,9 +1,14 @@
-  <div class="list">
+  @if(list.displayed === 1) {
+    <div class="list">
     <div class="list-header">
       <h2>
         <span>{{list.name}}</span>
       </h2>
-      <mat-icon aria-hidden="false" aria-label="Add a task" fontIcon="add_circle" (click)="openAddTask()"></mat-icon>
+      <div class="list-header-actions">
+        <app-delete-list [list]="list" [lists]="lists" />
+        <mat-icon aria-hidden="false" aria-label="Add a task" fontIcon="add_circle" (click)="openAddTask()"></mat-icon>
+      </div>
+      
     </div>
     <ol>
         @if(addingTask === true){
@@ -33,3 +38,4 @@
         }
     </ol>
     </div> 
+  }

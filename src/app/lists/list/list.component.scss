@@ -20,6 +20,12 @@
             font-weight: 600;
         }
 
+        .list-header-actions {
+            mat-icon {
+                padding: 0 0.25em;
+            }
+        }
+
     }
 
     ol {
