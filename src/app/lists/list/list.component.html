@@ -1,49 +1,32 @@
   @if(list.displayed === 1) {
     <div class="list">
-    <div class="list-header">
-      <div class="list-header-title" (click)="openListTitleEdition()">
-        @if (editingListTitle === true) {
-          <input #editTitle type="text" (keyup.enter)="updateListTitle(editTitle.value)" autofocus />
-        }
-        @else {
-          <h2>
-            <span >{{list.name}}</span>
-          </h2>
-        }
-
-      </div>
-      <div class="list-header-actions">
-        <app-delete-list [list]="list" [lists]="lists" />
-        <mat-icon aria-hidden="false" aria-label="Add a task" fontIcon="add_circle" (click)="openAddTask()"></mat-icon>
-      </div>
-      
-    </div>
-    <ol>
-        @if(addingTask === true){
-            <li>
-                <input type="text" #task class="checkboxList" placeholder="Enter your task" (keyup.enter)="addTask(task.value)" autofocus>
-            </li>
-        }
-        @for (task of list.tasks; track task.id) {
-            @if(task.status === 1) {
-            <li>
-                <div>
-                    <input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)" checked>
-                    <span>{{task.task}}</span>
-                </div>
-                <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete a task" fontIcon="delete" (click)="deleteTask(task.id)"></mat-icon>
-            </li>
-            } 
-            @else {
-            <li>
-                <div>
-                    <input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)">
-                    <span>{{task.task}}</span>
-                </div>
-                <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete a task" fontIcon="delete" (click)="deleteTask(task.id)"></mat-icon>
-            </li>
-            }     
-        }
-    </ol>
+      <app-list-header [list]="list" [lists]="lists"/>
+      <ol>
+          @if(addingTask === true){
+              <li>
+                  <input type="text" #task class="checkboxList" placeholder="Enter your task" (keyup.enter)="addTask(task.value)" autofocus>
+              </li>
+          }
+          @for (task of list.tasks; track task.id) {
+              @if(task.status === 1) {
+              <li>
+                  <div>
+                      <input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)" checked>
+                      <span>{{task.task}}</span>
+                  </div>
+                  <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete a task" fontIcon="delete" (click)="deleteTask(task.id)"></mat-icon>
+              </li>
+              } 
+              @else {
+              <li>
+                  <div>
+                      <input class="checkboxList" type="checkbox" (click)="changeStatus(task.status)">
+                      <span>{{task.task}}</span>
+                  </div>
+                  <mat-icon class="delete-icon" aria-hidden="false" aria-label="Delete a task" fontIcon="delete" (click)="deleteTask(task.id)"></mat-icon>
+              </li>
+              }     
+          }
+      </ol>
     </div> 
   }

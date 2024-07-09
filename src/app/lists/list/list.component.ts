@@ -1,7 +1,6 @@
 import { Component, input, Input, OnInit } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import { DeleteListComponent } from '../delete-list/delete-list.component';
-import { log } from 'console';
+import { MatIconModule } from '@angular/material/icon';
+import { ListHeaderComponent } from './list-header/list-header.component';
 
 type Task = {
   id: number, 
@@ -45,13 +44,12 @@ export const defaultList = {
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [MatIconModule, DeleteListComponent],
+  imports: [MatIconModule, ListHeaderComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit {
   addingTask = false;
-  editingListTitle = false; 
 
   @Input() lists: List[] = [defaultList];
   @Input() list: List = defaultList;
@@ -63,11 +61,6 @@ export class ListComponent implements OnInit {
   openAddTask () {
     this.addingTask = true; 
   };
-
-  openListTitleEdition () {
-    this.editingListTitle = true; 
-  };
-
 
   addTask (addedTask: string) {
     const highestId = this.getHighestId();
@@ -84,11 +77,6 @@ export class ListComponent implements OnInit {
 
   changeStatus(status: TASKSTATUS) {
     status === 0 ? status = TASKSTATUS.DONE : status = TASKSTATUS.TODO;
-  };
-
-  updateListTitle(newTitle: string) {
-    this.list.name = newTitle;
-    this.editingListTitle = false;
   };
 
   getHighestId () {

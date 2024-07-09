@@ -4,30 +4,6 @@
     margin: 1em; 
     min-width: 20em;
     
-   &-header {
-        display: flex;
-        flex-direction: row;
-        align-items: baseline;
-        justify-content: space-between;
-        margin: 0 0.5em;
-        margin-bottom: -1.5em;
-        padding: 0.5em;
-        padding-bottom: 0;
-        color: #402E96;
-
-        h2 {
-            font-size: 2em;
-            font-weight: 600;
-        }
-
-        .list-header-actions {
-            mat-icon {
-                padding: 0 0.25em;
-            }
-        }
-
-    }
-
     ol {
         padding: 5px;
         display: flex;
