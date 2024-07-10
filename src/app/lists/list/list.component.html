@@ -2,11 +2,10 @@
     <div class="list">
       <app-list-header [list]="list"/>
       <ol>
-          @if(addingTask === true){
               <li>
-                  <input type="text" #task class="checkboxList" placeholder="Enter your task" (keyup.enter)="addTask(task.value)" autofocus>
+                  <input type="text" #task class="checkboxList" placeholder="Enter your new task" (keyup.enter)="addTask(task.value)" autofocus>
+                  <mat-icon class="validate-icon" aria-hidden="false" aria-label="Validate the creation of new task" fontIcon="check_circle" (click)="validateInput(task.value)"></mat-icon>
               </li>
-          }
           @for (task of list.tasks; track task.id) {
               @if(task.status === 1) {
               <li>

@@ -21,14 +21,7 @@ export class AddListComponent {
   defaultList = {
     "id": 3,
     "name": "New list", 
-    "tasks": [ 
-        {
-            "id": 0, 
-            "task": 'Add a task', 
-            "rank": 0, 
-            "status": 0
-        }
-      ], 
+    "tasks": [], 
     "displayed": 1,
     }; 
 
@@ -56,4 +49,5 @@ export class AddListComponent {
 
     return highestListId;
   }
+  
 }

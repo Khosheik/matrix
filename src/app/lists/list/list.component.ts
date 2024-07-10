@@ -59,19 +59,22 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.reorderTaskByRank();
   };
-  
-  openAddTask () {
-    this.addingTask = true; 
-  };
 
   addTask (addedTask: string) {
-    const highestId = this.getHighest('id');
-    const highestRank = this.getHighest('rank');
+    const highestId = this.getHighestOfKey('id');
+    const highestRank = this.getHighestOfKey('rank');
 
     this.list.tasks = [...this.list.tasks, {id: highestId + 1, task: addedTask, rank: highestRank + 1, status: TASKSTATUS.TODO}];
     this.addingTask = false;
     this.reorderTaskByRank();
   };
+
+  validateInput(value: string) {
+    if(value !== '') {
+      this.addTask(value);
+    };
+    
+  }
 
   deleteTask(deletedTaskId: number) {
     this.list.tasks = this.list.tasks.filter((task) => task.id !== deletedTaskId)
@@ -81,31 +84,7 @@ export class ListComponent implements OnInit {
     status === 0 ? status = TASKSTATUS.DONE : status = TASKSTATUS.TODO;
   };
 
-  // getHighestId() {
-  //   let highestId = 0;
-
-  //   for (let task of this.list.tasks) {
-  //     if (task.id > highestId) {
-  //       highestId = task.id;
-  //     }
-  //   };
-
-  //   return highestId;
-  // };
-
-  // getHighestRank() {
-  //   let highestRank = 0;
-
-  //   for (let task of this.list.tasks) {
-  //     if (task.rank > highestRank) {
-  //       highestRank = task.rank;
-  //     }
-  //   };
-
-  //   return highestRank;
-  // };
-
-  getHighest(key: keyof Task) {
+  getHighestOfKey(key: keyof Task) {
     let highest = 0;
     
     for (let task of this.list.tasks) {
