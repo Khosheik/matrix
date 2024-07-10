@@ -1,8 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ListComponent } from './list/list.component';
-import data from './lists.json'
-import type { List } from './list/list.component' 
 import { AddListComponent } from './add-list/add-list.component';
+import { DataService } from './service/data.service';
 
 @Component({
   selector: 'app-lists',
@@ -18,5 +17,7 @@ import { AddListComponent } from './add-list/add-list.component';
   styleUrl: './lists.component.scss'
 })
 export class ListsComponent {
-  lists: List[] = data;
+  lists = this.dataService.lists;
+
+  constructor(private dataService: DataService) {}
 }
