@@ -1,6 +1,7 @@
 import { Component, input, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ListHeaderComponent } from './list-header/list-header.component';
+import { DataService } from '../service/data.service';
 
 type Task = {
   id: number, 
@@ -50,9 +51,10 @@ export const defaultList = {
 })
 export class ListComponent implements OnInit {
   addingTask = false;
-
-  @Input() lists: List[] = [defaultList];
   @Input() list: List = defaultList;
+  lists: List[] = this.dataService.lists; 
+
+  constructor(private dataService: DataService) {}
   
   ngOnInit(): void {
     this.reorderTaskByRank();
@@ -107,10 +109,10 @@ export class ListComponent implements OnInit {
     let highest = 0;
     
     for (let task of this.list.tasks) {
-      let taskItem = task[key];
-      if (typeof taskItem === 'number') {
-        if (taskItem > highest) {
-          highest = taskItem;
+      let taskItemValue = task[key];
+      if (typeof taskItemValue === 'number') {
+        if (taskItemValue > highest) {
+          highest = taskItemValue;
         }
       }
     };

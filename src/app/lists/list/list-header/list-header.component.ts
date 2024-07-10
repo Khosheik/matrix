@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DeleteListComponent } from '../../delete-list/delete-list.component';
 import { MatIconModule } from '@angular/material/icon';
 import { List } from '../list.component';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'app-list-header',
@@ -22,7 +23,7 @@ import { List } from '../list.component';
       </div>
       @if(editingListTitle === false) {
         <div class="list-header-actions">
-          <app-delete-list [list]="list" [lists]="lists" />
+          <app-delete-list [list]="list" />
         </div>
       }
     </div>
@@ -33,7 +34,9 @@ export class ListHeaderComponent {
   editingListTitle = false; 
 
   @Input() list!: List;
-  @Input() lists!: List[];
+  lists: List[] = this.dataService.lists;
+
+  constructor(private dataService: DataService) {}
 
   openListTitleEdition () {
     this.editingListTitle = true; 

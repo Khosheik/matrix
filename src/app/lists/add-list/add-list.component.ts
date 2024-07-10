@@ -1,6 +1,7 @@
 import { Component, Input} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import type { List } from '../list/list.component';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-add-list',
@@ -16,6 +17,7 @@ import type { List } from '../list/list.component';
   styleUrl: './add-list.component.scss'
 })
 export class AddListComponent {
+  // before we get a custom list at creation
   defaultList = {
     "id": 3,
     "name": "New list", 
@@ -30,7 +32,9 @@ export class AddListComponent {
     "displayed": 1,
     }; 
 
-  @Input() lists: List[] = [this.defaultList]; 
+  lists: List[] = this.dataService.lists;
+
+  constructor(private dataService: DataService) {}
   
   addList() {
     let highestListId = this.getHighestListId() 

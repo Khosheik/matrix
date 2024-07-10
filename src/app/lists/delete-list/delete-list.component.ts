@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { List, defaultList } from '../list/list.component';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-delete-list',
@@ -13,7 +14,9 @@ import { List, defaultList } from '../list/list.component';
 })
 export class DeleteListComponent {
   @Input() list: List = defaultList;
-  @Input() lists: List[] = [defaultList]
+  lists: List[] = this.dataService.lists;
+
+  constructor(private dataService: DataService) {}
 
   deleteList() {
     this.list.displayed = 0;

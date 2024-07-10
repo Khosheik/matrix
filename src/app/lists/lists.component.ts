@@ -9,9 +9,9 @@ import { DataService } from './service/data.service';
   imports: [ListComponent, AddListComponent],
   template: `<div class="lists">
     @for (list of lists; track list.id){
-      <app-list [list]="list" [lists]="lists"/>
+      <app-list [list]="list"/>
     }
-    <app-add-list [lists]=lists />
+    <app-add-list />
   </div>
   `,
   styleUrl: './lists.component.scss'
