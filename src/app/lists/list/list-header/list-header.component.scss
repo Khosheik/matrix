@@ -9,10 +9,25 @@
     padding-bottom: 0;
     color: #402E96;
 
-    h2 {
-        font-size: 2em;
-        font-weight: 600;
+    .list-header-title {
+        flex-grow: 2;
+
+        input {
+            border: none;
+            padding: 1.5em;
+            border-radius: 15px;
+            margin: 1em 0;
+            background-color: #F5F2FF;
+            width: 75%;
+        }
+
+        h2 {
+            font-size: 2em;
+            font-weight: 600;
+        } 
     }
+
+    
 
     .list-header-actions {
         mat-icon {
