@@ -63,8 +63,8 @@ export class ListComponent implements OnInit {
   };
 
   addTask (addedTask: string) {
-    const highestId = this.getHighestId();
-    const highestRank = this.getHighestRank();
+    const highestId = this.getHighest('id');
+    const highestRank = this.getHighest('rank');
 
     this.list.tasks = [...this.list.tasks, {id: highestId + 1, task: addedTask, rank: highestRank + 1, status: TASKSTATUS.TODO}];
     this.addingTask = false;
@@ -79,28 +79,43 @@ export class ListComponent implements OnInit {
     status === 0 ? status = TASKSTATUS.DONE : status = TASKSTATUS.TODO;
   };
 
-  getHighestId () {
-    let highestId = 0;
+  // getHighestId() {
+  //   let highestId = 0;
 
+  //   for (let task of this.list.tasks) {
+  //     if (task.id > highestId) {
+  //       highestId = task.id;
+  //     }
+  //   };
+
+  //   return highestId;
+  // };
+
+  // getHighestRank() {
+  //   let highestRank = 0;
+
+  //   for (let task of this.list.tasks) {
+  //     if (task.rank > highestRank) {
+  //       highestRank = task.rank;
+  //     }
+  //   };
+
+  //   return highestRank;
+  // };
+
+  getHighest(key: keyof Task) {
+    let highest = 0;
+    
     for (let task of this.list.tasks) {
-      if (task.id > highestId) {
-        highestId = task.id;
+      let taskItem = task[key];
+      if (typeof taskItem === 'number') {
+        if (taskItem > highest) {
+          highest = taskItem;
+        }
       }
     };
 
-    return highestId;
-  };
-
-  getHighestRank () {
-    let highestRank = 0;
-
-    for (let task of this.list.tasks) {
-      if (task.rank > highestRank) {
-        highestRank = task.rank;
-      }
-    };
-
-    return highestRank;
+    return highest;
   };
 
   reorderTaskByRank () {

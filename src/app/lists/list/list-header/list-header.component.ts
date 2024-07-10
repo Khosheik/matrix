@@ -20,9 +20,11 @@ import { List } from '../list.component';
         }
 
       </div>
-      <div class="list-header-actions">
-        <app-delete-list [list]="list" [lists]="lists" />
-      </div>
+      @if(editingListTitle === false) {
+        <div class="list-header-actions">
+          <app-delete-list [list]="list" [lists]="lists" />
+        </div>
+      }
     </div>
     `,
   styleUrl: './list-header.component.scss'
@@ -38,7 +40,9 @@ export class ListHeaderComponent {
   };
 
   updateListTitle(newTitle: string) {
-    this.list.name = newTitle;
+    if (newTitle !== '') {
+      this.list.name = newTitle;
+    }
     this.editingListTitle = false;
   };
 }
